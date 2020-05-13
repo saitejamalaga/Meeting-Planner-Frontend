@@ -1,0 +1,48 @@
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.42;
+    border-radius: 15px;
+  }
+  
+  .btn-circle.btn-lg {
+      width: 50px;
+      height: 50px;
+      padding: 10px 16px;
+      font-size: 18px;
+      line-height: 1.33;
+      border-radius: 25px;
+    }
+   
+    .online{
+  
+      height: 10px;
+      width: 10px;
+      background-color:green;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    
+    .offline{
+    
+      height: 10px;
+      width: 10px;
+      background-color:red;
+      border-radius: 50%;
+      display: inline-block;
+    }
+  
+    .style-border{
+      margin-right: auto; margin-left: auto; border: 3px solid rgb(255, 60, 60); border-radius: 5px;
+  }
+  .main-border{
+    margin-right: auto; margin-left: auto; border: 5px solid orange; border-radius: 5px;
+  }
+
+  .list {
+    height: 60vh;
+    overflow-y: scroll;
+}

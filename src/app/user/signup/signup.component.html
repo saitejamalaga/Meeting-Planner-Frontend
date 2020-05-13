@@ -1,0 +1,168 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark navbar-laravel">
+  <div class="container">
+    <a class="navbar-brand" href="#">Meeting Planner</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/login']">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<body>
+  <br>
+  <div class="container">
+    <div class="row justify-content-center align">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" style="background-color :rgb(123, 253, 134);">
+            <h5>Create Account</h5>
+          </div>
+          <div class="card-body">
+            <form #createForm="ngForm" (ngSubmit)="createUser()">
+
+              <div class="form-group row">
+                <label for="firstName" class="col-md-4 col-form-label text-md-right">Frist Name</label>
+                <div class="col-md-6">
+                  <input type="text" id="fname" class="form-control" name="firstName" [(ngModel)]="firstName" required
+                    autofocus>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="lastName" class="col-md-4 col-form-label text-md-right">Last Name</label>
+                <div class="col-md-6">
+                  <input type="text" id="lname" class="form-control" name="lastName" [(ngModel)]="lastName" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-4"></div>
+                <div class="col-md-6 alert alert-warning">
+                  Please enter <b>"-admin"</b> at the end of username to get admin power
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="userName" class="col-md-4 col-form-label text-md-right">User Name</label>
+                <div class="col-md-6">
+                  <input type="text" id="uname" class="form-control" name="userName" [(ngModel)]="userName" required>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="country" class="col-md-4 col-form-label text-md-right">Country</label>
+                <div class="col-md-6">
+                  <select (change)="setCountry($event.target.value)" class="form-control" name="country"
+                    [(ngModel)]="country" required>
+                    <option value="" selected="true" disabled="disabled">Select your Country</option>
+                    <option *ngFor="let country of countriesNamesArray" [value]="country[0]">{{country[1]}}
+                    </option>
+                  </select>
+
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label for="country" class="col-md-4 col-form-label text-md-right"></label>
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col-md-3">
+                      <h6>Code</h6>
+                    </div>
+                    <div class="col-md-9">
+                      <h6>Mobile Number</h6>
+                    </div>
+                  </div>
+
+                  <div class="row form-label-group">
+                    <div class="col-md-3">
+                      <span *ngIf="countryCode">+{{countryCode}}
+                      </span>
+                    </div>
+
+                    <div class="col-md-9 d-flex align-self-end">
+                      <input type="tel" #Mobile="ngModel" pattern="^\d{10}$" name="mobile" id="mobile"
+                        class="form-control" [(ngModel)]="mobile" required>
+                    </div>
+
+                  </div>
+                  <br>
+                  <div class="row form-label-group">
+                    <div class="col-md-3">
+
+                    </div>
+
+                    <div class="col-md-9 d-flex align-self-end">
+                      <div [hidden]="Mobile.valid || Mobile.pristine" class="alert alert-danger">
+                        <div *ngIf="Mobile.errors?.pattern">
+                          ** Mobile Number must be 10 digits
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+
+
+
+              <div class="form-group row">
+                <label for="email-address" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+                <div class="col-md-6">
+                  <input type="email" id="email-address" class="form-control" name="email" [(ngModel)]="email"
+                    #Email="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" required>
+                  <br>
+                  <div [hidden]="Email.valid || Email.pristine" class="alert alert-danger">
+                    <div *ngIf="Email.errors?.pattern">
+                      ** Email is invalid!
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                <div class="col-md-6">
+                  <input type="password" #Password="ngModel" id="password" class="form-control" name="password"
+                    [(ngModel)]="password" minlength="8" required><br>
+                  <div [hidden]="Password.valid || Password.pristine" class="alert alert-danger">
+                    <div *ngIf="Password.errors?.minlength">
+                      ** Password should contain atleast 8 characters!
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 offset-md-4">
+                <button type="submit" class="btn btn-primary" [disabled]="!createForm.form.valid">
+                  Register
+                </button>
+              </div>
+
+            </form>
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br><br><br><br><br><br>
+  <app-footer></app-footer>
+</body>
